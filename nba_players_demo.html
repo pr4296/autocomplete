@@ -3,7 +3,6 @@
 <script src="relevancearray.js"></script>
 <script src="trie.js"></script>
 <script src="autocomplete.js"></script>
-<script src="https://unpkg.com/tinyqueue@2.0.0/tinyqueue.min.js"></script>
 <style>
 html {
     font-family: sans-serif;
@@ -43,7 +42,7 @@ inpSearch.onkeyup = function() {
     divSuggestions.innerHTML = "";
     for (var i in arr) {
         var div = document.createElement('div');
-        div.innerText = arr[i].relevance+": "+arr[i].word;
+        div.innerText = arr[i].word;
         divSuggestions.appendChild(div);
     }
 };

@@ -16,11 +16,9 @@ class TrieNode {
 
 class Trie {
     _root;
-    _numSuggestions;
 
-    constructor(numSuggestions = 5) {
+    constructor() {
         this._root = new TrieNode('');
-        this._numSuggestions = numSuggestions;
     }
 
     addKey(word, key, relevance = 1) {
@@ -29,7 +27,7 @@ class Trie {
     }
 
     _addNode(node, word, key, index, relevance) {
-        if (!node || index >= key.length) return null;
+        if (!node || !key || index >= key.length) return null;
 
         var letter = key.charAt(index).toLowerCase();
         var child = node._children[letter];

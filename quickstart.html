@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <!-- include the library scripts -->
+        <script src="relevancearray.js"></script>
+        <script src="trie.js"></script>
+        <script src="autocomplete.js"></script>
+
+        <!-- some basic css for aesthetics -->
+        <style>
+            html {
+                font-family: sans-serif;
+            }
+            #inpSearch, #divSuggestions {
+                line-height: 2rem;
+                font-size: 2rem;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- we enter our search into inpSearch and the suggestions will populate in divSuggestions -->
+        <input id="inpSearch"/>
+        <div id="divSuggestions"></div>
+
+        <script>
+        // our possible suggestions
+        var words = ["Chris Paul", "LeBron James", "Paul George", "Chris Bosh", "Dwyane Wade", "James Ennis", "Wade Seldon", "George Hill", "Solomon Hill", "Paul Millsap", "Pau Gasol"];
+
+        // create our autocomplete object
+        var ac = new Autocomplete(words);
+        
+        var divSuggestions = document.getElementById('divSuggestions');
+        var inpSearch = document.getElementById('inpSearch');
+
+        // every time a key is typed in the input, call ac.getSuggestions() on the input text
+        inpSearch.onkeyup = function() {
+            // get the suggestions in an array
+            var arr = ac.getSuggestions(inpSearch.value);
+
+            // clear the previous suggestions
+            divSuggestions.innerHTML = "";
+
+            // populate the new suggestions
+            for (var i in arr) {
+                var div = document.createElement('div');
+                div.innerText = arr[i].word;
+                divSuggestions.appendChild(div);
+            }
+        };
+        </script>
+    </body>
+</html>

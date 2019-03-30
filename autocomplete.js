@@ -5,20 +5,18 @@ var RelevanceEnum = Object.freeze({
 });
 
 class Autocomplete {
-    _termRanks;
     _trie;
 
-    constructor(terms, termRanks, numSuggestions) {
-        this._termRanks = termRanks;
-        this._createTrie(terms, numSuggestions);
+    constructor(terms) {
+        this._createTrie(terms);
     }
 
-    _createTrie(terms, numSuggestions) {
-        this._trie = new Trie(numSuggestions);
+    _createTrie(terms) {
+        this._trie = new Trie();
         for (var i in terms) {
             this._trie.addKey(terms[i]);
         }
-        this._trie.printByLevel();
+        this.loadWordsFromArr(terms);
     }
 
     getSuggestions(word) {
@@ -43,6 +41,7 @@ class Autocomplete {
 
     // loads all possible keys for each word in arr
     loadWordsFromArr(arr) {
+        if (arr === null || arr.length === 0) return;
         for (var i in arr) {
             var fullname = arr[i];
             // full name (ex: "le" matches "LeBron James" but not "Alex Len")
