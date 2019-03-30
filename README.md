@@ -1,6 +1,6 @@
 # autocomplete - a zero dependency autocomplete library
 This is a completely independent library that can be used to generate quick autocomplete suggestions in the browser.
-The underlying datastructure is a trie.
+The underlying data structure is a trie.
 
 # quickstart.html
 A minimal search example using autocomplete
