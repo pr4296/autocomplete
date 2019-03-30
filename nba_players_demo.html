@@ -1,0 +1,53 @@
+<html>
+<head>
+<script src="relevancearray.js"></script>
+<script src="trie.js"></script>
+<script src="autocomplete.js"></script>
+<script src="https://unpkg.com/tinyqueue@2.0.0/tinyqueue.min.js"></script>
+<style>
+html {
+    font-family: sans-serif;
+}
+#inpSearch, #divSuggestions {
+    line-height: 2rem;
+    font-size: 2rem;
+    margin: 20px;
+}
+</style>
+</head>
+<body>
+<input id="inpSearch"/>
+<div id="divSuggestions"></div>
+
+<script>
+var ac = new Autocomplete(null, null, 10);
+
+var playerArr = [];
+
+const request = async () => {
+    const response = await fetch('https://raw.githubusercontent.com/bttmly/nba/master/data/players.json');
+    var unformatted = await response.json();
+    var playerArr = [];
+    for (var i in unformatted) {
+        playerArr.push(unformatted[i].firstName+' '+unformatted[i].lastName);
+    }
+    ac.loadWordsFromArr(playerArr);
+}
+
+request();
+
+var inpSearch = document.getElementById('inpSearch');
+var divSuggestions = document.getElementById('divSuggestions');
+inpSearch.onkeyup = function() {
+    var arr = ac.getSuggestions(inpSearch.value);
+    divSuggestions.innerHTML = "";
+    for (var i in arr) {
+        var div = document.createElement('div');
+        div.innerText = arr[i].relevance+": "+arr[i].word;
+        divSuggestions.appendChild(div);
+    }
+};
+</script>
+</body>
+
+</html>
