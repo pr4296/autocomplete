@@ -2,17 +2,15 @@
 This is a completely independent library that can be used to generate quick autocomplete suggestions in the browser.
 The underlying datastructure is a trie.
 
-# quickstart
+# quickstart.html
 A minimal search example using autocomplete
 The 3 javascript files (relevancearray.js, trie.js, and autocomplete.js) must be in the same folder as the html file below.
 
 ```html
 <html>
     <head>
-        <!-- include the library scripts -->
-        <script src="relevancearray.js"></script>
-        <script src="trie.js"></script>
-        <script src="autocomplete.js"></script>
+        <!-- include the library script -->
+        <script src="autocomplete.min.js"></script>
 
         <!-- some basic css for aesthetics -->
         <style>
